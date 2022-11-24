@@ -1,2 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿// Задача - определить третью цифру слева в любом произвольном заданном целом числе.
+
+Console.WriteLine("Enter any number:");
+int number = Convert.ToInt32(Console.ReadLine());
+
+if (number > 99) // условие проверяет, что число является трехзначным и искомая цифра в нем присутствует
+{
+    double x = Math.Floor(Math.Log10(number)) + 1; // определение сколько десятичных разрядов имеет введенное число через применение функции Log(10)
+    Console.WriteLine($"Введенное число имеет разрядность {x}");
+    double y = number / (Math.Pow(10,(x - 3)));  // трансформирует заданное число в аналогичное число, но с сдвинутой запятой целой его части сразу за третьей цифрой слева
+    double y1 = (Math.Floor(y));   // это определение целой части числа от трансформированного аналогичного числа
+    Console.WriteLine($"Трансформированное число {y1}");
+    double z = Math.Floor(y%10);   // здесь производиться нахождение отстатка от деления трансформированного числа на 10 и конвертация его в целое число из вещественного (отброшена дробная часть)
+    Console.WriteLine($"Третья цифра слева в веденном числе {z}");
+}
+else
+{
+    Console.WriteLine("The desired number is not in this number");
+}
