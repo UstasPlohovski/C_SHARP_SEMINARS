@@ -1,0 +1,195 @@
+// Задача 2 - из двух чисел найти минимальное и максимальное
+
+Console.Write("Enter the first any integer:");
+
+int number1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Enter the second any integer:");
+
+int number2 = Convert.ToInt32(Console.ReadLine());
+
+if (number1 > number2)
+{
+    Console.WriteLine($"The first number {number1} is MAX");
+    Console.WriteLine($"The second number {number2} is MIN");
+}
+else
+{
+    Console.WriteLine($"The second number {number2} is MAX");
+    Console.WriteLine($"The first number {number1} is MIN");
+}
+
+
+
+// Задача 4 - из трех чисел найти максимальное
+
+Console.Write("Enter the first any integer and press Enter:");
+
+int number1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Enter the second any integer and press Enter:");
+
+int number2 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Enter the third any integer and press Enter:");
+
+int number3 = Convert.ToInt32(Console.ReadLine());
+
+int max = 0;
+
+if (number1 > number2)
+{
+    max = number1;
+    if (number3 > number1)
+    {
+        max = number3;
+        Console.WriteLine($"The number {max} is MAX");
+    }
+    else
+    {
+        Console.WriteLine($"The number {max} is MAX");
+    }
+}
+else
+{
+    if (number3 > number2)
+    {
+        max = number3;
+        Console.WriteLine($"The number {max} is MAX");
+    }
+    else
+    {
+        max = number2;
+        Console.WriteLine($"The number {max} is MAX");
+    }
+}
+
+
+
+// Задача 6 - определение четности или нечетности введенного числа.
+
+Console.Write("Enter the any integer and press Enter:");
+
+double number = Convert.ToInt32(Console.ReadLine());
+
+double result = number % 2;
+
+if (result == 0)
+{
+    Console.WriteLine($"Nuber {number} is even number");
+}
+else
+{
+
+    Console.WriteLine($"Nuber {number} is not even number");
+}
+
+
+
+// Задача - найти наибольшую цифру в двухзнвчном числе.
+
+int num = new Random().Next(10, 100);
+Console.WriteLine($"Сгенерировано случайное число {num}");
+int max = num / 10;
+if (num % 10 > max) max = num % 10;
+Console.WriteLine($"Наибольшая цифра в этом числе это {max}");
+
+
+
+// Задача - в трехзначном числе исключить из него среднюю (вторую справа / слева) цифру и записать полученное число. 
+
+int numA = new Random().Next(100, 1000);
+Console.WriteLine($"Ваше число {numA}");
+int d = numA % 10;
+int n = numA / 100;
+Console.WriteLine($"{n}{d}");
+
+
+
+// Задача - определить является ли второе число кратным первому
+
+Console.WriteLine("Enter two numbers:");
+int n1 = Convert.ToInt32(Console.ReadLine());
+int n2 = Convert.ToInt32(Console.ReadLine());
+
+if (n2 % n1 == 0) Console.WriteLine("The second number is a multiple of the first.");
+else
+{
+    Console.WriteLine("The second number is NOT a multiple of the first.");
+    int r = n2 % n1;
+    Console.WriteLine($"The residue  is {r}");
+}
+
+
+
+// Задача - проверить делиться ли заданное число сразу на 4 и 6 без остатка.
+
+Console.WriteLine("Введите целое число:");
+int num = Convert.ToInt32(Console.ReadLine());
+
+if (num % 4 == 0 && num % 6 == 0) Console.WriteLine("Введенное число делится без остатка на 4 и 6");
+else Console.WriteLine("Введенное число НЕ делится без остатка на 4 и 6");
+
+
+
+// Задача - определить третью цифру слева в любом произвольном заданном целом числе.
+
+Console.WriteLine("Enter any number:");
+int number = Convert.ToInt32(Console.ReadLine());
+
+if (number > 99) // условие проверяет, что число является трехзначным и искомая цифра в нем присутствует
+{
+    double x = Math.Floor(Math.Log10(number)) + 1; // определение сколько десятичных разрядов имеет введенное число через применение функции Log(10)
+    Console.WriteLine($"Введенное число имеет разрядность {x}");
+    double y = number / (Math.Pow(10,(x - 3)));  // трансформирует заданное число в аналогичное число, но с сдвинутой запятой целой его части сразу за третьей цифрой слева
+    double y1 = (Math.Floor(y));   // это определение целой части числа от трансформированного аналогичного числа
+    Console.WriteLine($"Трансформированное число {y1}");
+    double z = Math.Floor(y%10);   // здесь производиться нахождение отстатка от деления трансформированного числа на 10 и конвертация его в целое число из вещественного (отброшена дробная часть)
+    Console.WriteLine($"Третья цифра слева в веденном числе {z}");
+}
+else
+{
+    Console.WriteLine("The desired number is not in this number");
+}
+
+
+
+// Задача - определить третью цифру слева в любом произвольном заданном целом числе.
+//    (решение через цикл)
+
+Console.WriteLine("Enter number");
+int Number = Convert.ToInt32(Console.ReadLine());
+int CurrentNumber = 0, Remainder = 0;
+
+if (Number > 99)
+{
+    CurrentNumber = Number;
+    while (CurrentNumber >= 1000)
+    {
+        CurrentNumber /= 10;
+        Remainder = CurrentNumber % 10;
+    }
+    Console.WriteLine($"The third number from the left is {Remainder}");
+}
+else
+{
+Console.WriteLine("The thidr number isn't in the number");
+}
+
+
+
+// Задача - вывести все четные числа от 1 до N
+
+Console.WriteLine("Enter number");
+int Number = Convert.ToInt32(Console.ReadLine());
+int CurrentNumber = 1;
+
+while (CurrentNumber <= Number)
+
+{
+    if (CurrentNumber%2 == 0)
+    { 
+        Console.Write($"{CurrentNumber}, ");
+    }
+        CurrentNumber++ ;
+}
