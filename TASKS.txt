@@ -616,3 +616,93 @@ catch                                                               // блок 
 {
     Console.WriteLine("Ошибка: проверьте корректность введенных данных.");
 }
+
+
+
+// Задача 24: Напишите программу, которая принимает на вход число (А) и выдаёт сумму чисел от 1 до А.
+// 7 -> 28
+// 4 -> 10
+
+Console.WriteLine("Введите целое число");
+int num = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine($"Сумма чисел от 1 до {num} равна {Summa(num)}");
+
+
+int Summa(int num)
+{
+    int sum=0;
+    for (int i=1;i<=num;i++)  sum+=i;
+    return sum;
+}
+
+
+
+// Задача 30: Напишите программу, которая выводит массив из 8 элементов, заполненный нулями и единицами в случайном порядке. [1,0,1,1,0,1,0,0] 
+// Далее обернуть всё это в функцию, конечно же , здесь нужна функция которая красиво выводит массив через запятую, создать функцию булевого типа , которая определяет больше ли 1 чем 0 в массиве 
+ 
+int[] array = new int[8]; 
+for (int i = 0; i < 8; i++) 
+    array[i] = new Random().Next(0, 2); 
+PrintArray(array); 
+if (Check1(array)) 
+    Console.WriteLine("Единиц больше, чем нулей!"); 
+else    Console.WriteLine("Нулей не меньше, чем единиц!"); 
+ 
+void PrintArray(int[] a) 
+{ 
+    for (int i = 0; i < a.Length - 1; i++) 
+        Console.Write($"{a[i]}, "); 
+    Console.WriteLine($"{a[^1]}"); 
+} 
+ 
+ 
+ 
+bool Check1(int[] a) 
+{ 
+    int sum = 0; 
+    for (int i = 0; i < a.Length; i++) 
+    { 
+        sum = sum + a[i]; 
+    } 
+    if (sum > a.Length / 2) 
+        return true; 
+    else return false; 
+}
+
+
+
+// Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
+
+Console.Write("Введите число, возводимое в степень: ");
+int X = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Введите число, равное значению степени: ");
+int Y = Convert.ToInt32(Console.ReadLine());
+
+int R = X;
+try                                                         // основной блок алгоритма
+{
+Degree(X, Y);                                               // вызов функции возведения числа X в степень Y
+PrintResult(X, Y, R);                                       // вызов функции вывода на экран результата вычислений
+}
+catch                                                       // блок алгоритма на случай возникновения ошибок
+{
+    Console.WriteLine("Ошибка. Пожалуйста проверьте корректность введенных данных.");
+}
+
+                                                            // блок функций
+int Degree(int A, int B)                                    // функция возведения числа А в степень В
+{
+    for (int i = 1; i < B; i++)
+    {
+        R = R * A;
+    }
+    return R;
+}
+
+void PrintResult(int A, int B, int R)                       // функция печати результата вычислений
+{
+    Console.WriteLine();
+    Console.WriteLine($"Ваш результат - число {A} в степени {B} = {R}");
+    Console.WriteLine();
+}
