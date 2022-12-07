@@ -339,7 +339,7 @@ else
 
 
 
-// алгоритм сортировки методом выбора, ещё его называют алгоритм сортировки методом минимакса
+// Задача - алгоритм сортировки методом выбора, ещё его называют алгоритм сортировки методом минимакса
 
 int[] arr = {1,5,4,3,2,6,7,1,1};
 void PrintArray(int[] array)
@@ -705,4 +705,49 @@ void PrintResult(int A, int B, int R)                       // функция п
     Console.WriteLine();
     Console.WriteLine($"Ваш результат - число {A} в степени {B} = {R}");
     Console.WriteLine();
+}
+
+
+
+// Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе. Через строку решать нельзя.
+// 452 -> 11
+// 82 -> 10
+// 9012 -> 12
+
+
+Console.WriteLine("Enter your number");
+double Number = Convert.ToDouble(Console.ReadLine());
+
+double NumberSize = Math.Floor(Math.Log10(Number)) + 1; 	    // определение размерности (длинны) числа
+
+//Console.WriteLine($"Size = {NumberSize}");									// вспомогательная строка использовалась для контроля работы алгоритма
+double NumSum = 0;
+double NumberTemp = 0;
+Remaider(Number);
+
+Console.WriteLine($"NumSum = {NumSum}");	
+
+// double NumberRemaider = 0;
+
+
+// for (int i = 1; i <= NumberSize; i++)
+// {
+//     //NumberRemaider = NumberTemp %10;
+//     //double NumberTemp = NumberTemp / 10;
+//     double NumberTemp = Math.Floor((NumberTemp / Math.Pow(10 , (i)))%10);
+//     // double SumNumber = SumNumber + NumberTemp;
+//     Console.WriteLine($"{i}, {NumberTemp}");									// вспомогательная строка использовалась для контроля работы алгоритма
+// }
+
+double Remaider(double A)                                    // функция возведения числа А в степень В
+{
+    for (int i = 0; i < NumberSize; i++)
+    {
+    NumberTemp = Math.Floor((A / Math.Pow(10 , (i)))%10);
+    NumSum = NumSum + NumberTemp;
+    Console.WriteLine($"{i} / {NumberTemp} /{NumSum}");
+    }
+    // NumberTemp = A % 10;
+    // NumSum = NumSum + NumberTemp;
+    return NumSum;
 }
