@@ -17,11 +17,13 @@
 Console.Write("Введите любое число и нажмите Enter: ");
 
 double Number = Convert.ToDouble(Console.ReadLine());
+double SizeNum1 = 0;
+double SizeNum2 = 0;
 
 if ((Check1(Number)) == 0)
 {
-    Size1(Number); 
-    PrintSize1(Number);
+    SizeNum1 = Size1(Number); 
+    PrintSize1(SizeNum1);
 }
 else
 {
@@ -30,11 +32,12 @@ else
     {
         NumberTemp = NumberTemp * 10;
     }
-
-    double Size = Math.Floor(Math.Log10(NumberTemp)); 
-    Console.WriteLine();
-    Console.WriteLine($"Количество цифр в введенном числе: {Size}");
-    Console.WriteLine();
+    SizeNum2 = Size1(NumberTemp) - 1; 
+    PrintSize1(SizeNum2);
+    // double Size = Math.Floor(Math.Log10(NumberTemp)); 
+    // Console.WriteLine();
+    // Console.WriteLine($"Количество цифр в введенном числе: {Size1}");
+    // Console.WriteLine();
 }
 // Функции:
 
@@ -49,7 +52,7 @@ double Size1(double N)
     return SizeNum1;
 }
 
-void PrintSize1(double N)
+void PrintSize1 (double Size1)
 {
     Console.WriteLine();	
     Console.WriteLine($"Количество цифр в введенном числе: {Size1}");

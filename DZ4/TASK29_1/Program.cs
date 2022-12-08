@@ -4,9 +4,7 @@
 Console.WriteLine("Введите размер массива (N): ");                  // определяем размер массива
 int N = Convert.ToInt32(Console.ReadLine());
 
-int[] Array1 = new int[N];                                          // создаем пустой массив заданного размера
-
-ReadArray1(N);                                                      // вызов функции заполнения массива
+int [] Array1 = ReadArray1(N);                                      // вызов функции заполнения массива
 Console.WriteLine();
 WriteArray1(Array1);                                                // вызов функции печати массива
 
