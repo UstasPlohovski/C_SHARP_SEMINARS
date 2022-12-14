@@ -1030,3 +1030,444 @@ double MaxNumber(double[] array)                                    // функ�
     }
     return MaxNum;
 }
+
+
+
+// Задача 31: Задайте массив из N элементов, заполненный случайными числами из промежутка [-9, 9]. 
+// Найдите сумму отрицательных и положительных элементов массива.
+// Например, в массиве [3,9,-8,1,0,-7,2,-1,8,-3,-1,6] сумма положительных чисел равна 29, сумма отрицательных равна -20.
+
+int[] CreateArray(int size)  // принимает размер массива и возвращает сгенерированный массив
+{
+    int[] array = new int[size];
+    for (int i = 0; i < size; i++)
+        array[i] = new Random().Next(-9, 10);
+    return array;
+}
+
+void PrintArray(int[] array)
+{
+    foreach (int el in array)   //этот цикл только для просмотра и тут нет индексов
+        Console.Write($"{el} ");
+    // for (int i = 0; i < array.Length; i++)
+    //     Console.Write($"{array[i]} ");
+    Console.WriteLine();
+}
+
+int[] FindSums(int[] array)
+{
+
+    int SumP = 0;
+    int SumN = 0;
+    foreach (int el in array)
+    {
+        if (el > 0) SumP += el; // SumP=SumP+el
+        else SumN += el;  // SumN=SumN+el
+    }
+    int[] results = {SumP, SumN};
+    return results;
+}
+
+Console.WriteLine("Введите размерность массива");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] array = CreateArray(size);
+PrintArray(array);
+
+int[] sums = FindSums(array);
+Console.WriteLine($"Сумма всех положительных элементов равна {sums[0]}");
+Console.WriteLine($"Сумма всех отрицательных элементов равна {sums[1]}");
+
+
+
+// Задача 32: Напишите программу замена элементов массива: положительные элементы замените на 
+//соответствующие отрицательные, и наоборот.
+// [-4, -8, 8, 2] -> [4, 8, -8, -2] 
+Console.WriteLine("Введите размерность массива");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] array = CreateArray(size);
+PrintArray(array);
+Revert(array);
+PrintArray(array);
+
+void Revert(int[] A)
+{
+    for (int i = 0; i < A.Length; i++)
+        A[i] = -A[i];
+   
+}
+
+int[] CreateArray(int size)  // принимает размер массива и возвращает сгенерированный массив
+{
+    int[] array = new int[size];
+    for (int i = 0; i < size; i++)
+        array[i] = new Random().Next(-9, 10);
+    return array;
+}
+
+void PrintArray(int[] array)
+{
+    foreach (int el in array)   //этот цикл только для просмотра и тут нет индексов
+        Console.Write($"{el} ");
+    // for (int i = 0; i < array.Length; i++)
+    //     Console.Write($"{array[i]} ");
+    Console.WriteLine();
+}
+
+
+
+// Задача 33: Задайте массив. Напишите программу, которая определяет, присутствует ли заданное число в массиве. 
+// 4; массив [6, 7, 19, 345, 3] -> нет 
+// -3; массив [6, 7, 19, 345, 3] -> да 
+int[] CreateArray(int size)  // принимает размер массива и возвращает сгенерированный массив 
+{ 
+    int[] array = new int[size]; 
+    for (int i = 0; i < size; i++) 
+        array[i] = new Random().Next(-9, 10); 
+    return array; 
+} 
+ 
+void PrintArray(int[] array) 
+{ 
+    foreach (int el in array)   //этот цикл только для просмотра и тут нет индексов 
+        Console.Write($"{el} "); 
+    // for (int i = 0; i < array.Length; i++) 
+    //     Console.Write($"{array[i]} "); 
+    Console.WriteLine(); 
+} 
+bool CheckNumberIn(int number, int[] array) 
+{ 
+    bool find = false; 
+    foreach (int el in array) 
+    { 
+        if (el == number) 
+        { 
+            find = true; 
+            break; 
+        } 
+    } 
+    return find; 
+} 
+ 
+Console.Write("Введите размерность массива "); 
+int size=Convert.ToInt32 (Console.ReadLine()); 
+Console.Write("Введите число "); 
+int number=Convert.ToInt32 (Console.ReadLine()); 
+int[] maxArray=CreateArray(size); 
+PrintArray(maxArray); 
+Console.WriteLine(CheckNumberIn(number,maxArray));
+
+
+
+// Задача 37: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. Результат запишите в новом массиве. 
+// [1 2 3 4 5] -> 5 8 3 
+// [6 7 3 6] -> 36 21 
+int[] CreateArray(int size)  // принимает размер массива и возвращает сгенерированный массив 
+{ 
+    int[] array = new int[size]; 
+    for (int i = 0; i < size; i++) 
+        array[i] = new Random().Next(-10, 10); 
+    return array; 
+} 
+ 
+void PrintArray(int[] array) 
+{ 
+    foreach (int el in array)   //этот цикл только для просмотра и тут нет индексов 
+        Console.Write($"{el} "); 
+    // for (int i = 0; i < array.Length; i++) 
+    //     Console.Write($"{array[i]} "); 
+    Console.WriteLine(); 
+} 
+ 
+int[] CreateNewArray(int[] array) 
+{ 
+    int size = array.Length / 2; 
+    if (array.Length % 2 == 1) 
+        size = array.Length / 2 + 1; 
+    int[] newArray = new int[size]; 
+    for (int i = 0; i < size; i++) 
+        newArray[i] = array[i] * array[array.Length - i - 1]; //^1 
+    if (array.Length % 2 > 0) 
+    { 
+        newArray[size - 1] = array[array.Length / 2]; // 
+    } 
+    return newArray; 
+} 
+ 
+int size = 5; 
+int[] array = CreateArray(size); 
+PrintArray(array); 
+PrintArray(CreateNewArray(array));
+
+
+
+//Задайте одномерный массив из 15 случайных чисел от -100 до 100. Найдите количество элементов массива, значения которых лежат в отрезке [10,99].  
+ 
+int[] CreateArray(int size)  // принимает размер массива и возвращает сгенерированный массив 
+{ 
+    int[] array = new int[size]; 
+    for (int i = 0; i < size; i++) 
+        array[i] = new Random().Next(-100, 100); 
+    return array; 
+} 
+ 
+void PrintArray(int[] array) 
+{ 
+    foreach (int el in array)   //этот цикл только для просмотра и тут нет индексов 
+        Console.Write($"{el} "); 
+    // for (int i = 0; i < array.Length; i++) 
+    //     Console.Write($"{array[i]} "); 
+    Console.WriteLine(); 
+} 
+int CountNumbers(int[] array) 
+{ 
+    int count = 0; 
+    for (int i = 0; i < array.Length; i++) 
+        if (array[i] >= 10 && array[i] < 100) 
+            count++; 
+    return count; 
+} 
+ 
+ 
+int[] array = CreateArray(15); 
+PrintArray(array); 
+Console.WriteLine(CountNumbers(array));
+
+
+
+// Задача 39: Напишите программу, которая перевернёт одномерный массив (последний элемент будет на первом месте, а первый - на последнем и т.д.)
+// [1 2 3 4 5] -> [5 4 3 2 1]
+// [6 7 3 6] -> [6 3 7 6]
+
+
+int[] CreateArray(int size)  // принимает размер массива и возвращает сгенерированный массив
+{
+    int[] array = new int[size];
+    for (int i = 0; i < size; i++)
+        array[i] = new Random().Next(-9, 10);
+    return array;
+}
+
+void PrintArray(int[] array)
+{
+    foreach (int el in array)   //этот цикл только для просмотра и тут нет индексов
+        Console.Write($"{el,2}\t");
+    Console.WriteLine();
+}
+
+void Reverse(int[] array)
+{
+    int size = array.Length;
+    int temp;
+    for (int i = 0; i < size/2; i++)
+        // (x,y) = (y,x)
+        {
+            temp = array[i];
+            array[i] = array[size-1-i];
+            array[size-1-i] = temp;
+        }
+        //(array[i] , array[size-1-i]) = (array[size-1-i] , array[i]);
+}
+
+Console.WriteLine("Введите размерность массива");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] array = CreateArray(size);
+PrintArray(array);
+Reverse(array);
+PrintArray(array);
+
+
+
+//задача 42 Напишите программу, которая будет преобразовывать десятичное число в двоичное. 
+ 
+Console.WriteLine("Введите число"); 
+int num = Convert.ToInt32(Console.ReadLine()); 
+FromTen(num); 
+ 
+void FromTen(int num) 
+{ 
+    string count = ""; 
+    while (num > 1) 
+    { 
+        count = Convert.ToString(num % 2) + count; 
+        num = num / 2; 
+    } 
+    count = 1 + count; 
+    Console.WriteLine(count); 
+}
+
+
+
+// задача 2 HARD необязательная. Сгенерировать массив случайных целых чисел размерностью m*n 
+//(размерность вводим с клавиатуры). Вывести на экран красивенько таблицей. Найти минимальное 
+//число и его индекс, найти максимальное число и его индекс. Вывести эту информацию на экран.
+
+// функция генерации двухмерного массива через цикл - начиная с первой сточки заполняем каждый столбец и так до последней строчки
+// функция вывода на печать сгенерированного массива
+// функция поиска максимального значения через цикл аналогичный генерации массива
+// функция поиска минимального значения через цикл аналогичный генерации массива
+// вывод на экран результатов
+
+int M = new Random().Next(3, 7);                                           
+int N = new Random().Next(2, 6);   
+Console.WriteLine();
+Console.WriteLine($"Определен случайный размер массива: {M} X {N}");
+Console.WriteLine();              
+int[,] Array = CreateArray(M, N);                                               
+PrintArray(Array, M, N);
+Console.WriteLine(); 
+int MinNumber = FindMinNumber(Array);
+int MinIndexM = FindMinNumberInM(Array);
+int MinIndexN = FindMinNumberInN(Array);       
+Console.WriteLine($"Минимальный элемент массива: {MinNumber}, его индекс [{MinIndexM}, {MinIndexN}]");
+int MaxNumber = FindMaxNumber(Array);
+int MaxIndexM = FindMaxNumberInM(Array);
+int MaxIndexN = FindMaxNumberInN(Array);       
+Console.WriteLine($"Максимальный элемент массива: {MaxNumber}, его индекс [{MaxIndexM}, {MaxIndexN}]");
+
+// Функции:
+
+int[,] CreateArray(int M, int N)                                                   
+{
+    int[,] Array = new int[N,M];
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            Array [i,j] = new Random().Next(1, 999);
+        }
+    }
+    return Array;
+}
+
+void PrintArray(int[,] Array, int M, int N)
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            Console.Write($"{Array[i,j]}\t");
+        }
+        Console.WriteLine();
+    }
+}
+
+int FindMinNumber(int[,] Array)                                                   
+{
+    int MinNumber = Array[0,0];
+    int MinIndexM = 0;
+    int MinIndexN = 0;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (Array[i,j] < MinNumber)
+            {
+                MinNumber = Array[i,j];
+                MinIndexM = i;
+                MinIndexN = j;
+            }
+        }
+    }
+    return MinNumber;
+}
+
+int FindMinNumberInM(int[,] Array)                                                   
+{
+    int MinNumber = Array[0,0];
+    int MinIndexM = 0;
+    int MinIndexN = 0;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (Array[i,j] < MinNumber)
+            {
+                MinNumber = Array[i,j];
+                MinIndexM = i;
+                MinIndexN = j;
+            }
+        }
+    }
+    return MinIndexM;
+}
+
+int FindMinNumberInN(int[,] Array)                                                   
+{
+    int MinNumber = Array[0,0];
+    int MinIndexM = 0;
+    int MinIndexN = 0;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (Array[i,j] < MinNumber)
+            {
+                MinNumber = Array[i,j];
+                MinIndexM = i;
+                MinIndexN = j;
+            }
+        }
+    }
+    return MinIndexN;
+}
+
+int FindMaxNumber(int[,] Array)                                                   
+{
+    int MaxNumber = Array[0,0];
+    int MaxIndexM = 0;
+    int MaxIndexN = 0;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (Array[i,j] > MaxNumber)
+            {
+                MaxNumber = Array[i,j];
+                MaxIndexM = i;
+                MaxIndexN = j;
+            }
+        }
+    }
+    return MaxNumber;
+}
+
+int FindMaxNumberInM(int[,] Array)                                                   
+{
+    int MaxNumber = Array[0,0];
+    int MaxIndexM = 0;
+    int MaxIndexN = 0;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (Array[i,j] > MaxNumber)
+            {
+                MaxNumber = Array[i,j];
+                MaxIndexM = i;
+                MaxIndexN = j;
+            }
+        }
+    }
+    return MinIndexM;
+}
+
+int FindMaxNumberInN(int[,] Array)                                                   
+{
+    int MaxNumber = Array[0,0];
+    int MaxIndexM = 0;
+    int MaxIndexN = 0;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (Array[i,j] > MaxNumber)
+            {
+                MaxNumber = Array[i,j];
+                MaxIndexM = i;
+                MaxIndexN = j;
+            }
+        }
+    }
+    return MaxIndexN;
+}
+
