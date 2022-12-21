@@ -6,6 +6,8 @@
 // поставить в цикл условие на прерывание цикла
 // вывод результата на печать
 
+// код работает криво
+
 double Count = 0;
 string Enter = "Start";
 CheckNumber(Enter);
@@ -16,7 +18,7 @@ double CheckNumber(string Enter)
     while (Enter != "end")
     {
         Console.WriteLine("Введите число для проверки. В случае завершения ввода, введите - end.");
-        Enter = Console.ReadLine();
+        //Enter = Console.ReadLine();
         double Number = Convert.ToDouble(Enter);
         if (Number > 0)
         {
